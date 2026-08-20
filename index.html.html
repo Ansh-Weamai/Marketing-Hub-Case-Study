@@ -1,0 +1,475 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><title>What $356K a Unit With No Attribution Looks Like</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600&family=Archivo:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --paper:#f4f2fb;
+    --paper-raised:#ffffff;
+    --ink:#18121f;
+    --ink-muted:#4f4968;
+    --ink-faint:#8a83a0;
+    --line:#e3ddf2;
+    --line-strong:#c9bee3;
+    --violet:#4a35a0;
+    --violet-deep:#241a4d;
+    --violet-wash:#ece6fb;
+    --wine:#8c2f39;
+    --wine-deep:#341118;
+    --gold:#a8791f;
+    --good:#0f7a52;
+    --band-hero:#241a4d;
+    --band-dark:#150f28;
+    --on-band:#ffffff;
+    --on-band-muted:#c7bdf0;
+    --on-wine-muted:#e7b9bf;
+    --display:"Spectral",Georgia,"Times New Roman",serif;
+    --body:"Archivo",ui-sans-serif,system-ui,-apple-system,sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    --shadow:0 1px 2px rgba(24,18,31,0.07), 0 24px 46px -20px rgba(24,18,31,0.36);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#100c1c; --paper-raised:#1d1730; --ink:#f3eefc; --ink-muted:#b6adc9; --ink-faint:#786f92;
+      --line:#2e2842; --line-strong:#453c68;
+      --violet:#a68af7; --violet-deep:#332a63; --violet-wash:#241d3f;
+      --wine:#e78d92; --wine-deep:#4a1e24;
+      --gold:#dcb35a; --good:#3fe0a0;
+      --band-hero:#1c1638; --band-dark:#0a0714; --on-band:#ffffff; --on-band-muted:#c7bdf0;
+      --on-wine-muted:#f0c7cb;
+      --shadow:0 1px 2px rgba(0,0,0,0.5), 0 24px 48px -20px rgba(0,0,0,0.7);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#100c1c; --paper-raised:#1d1730; --ink:#f3eefc; --ink-muted:#b6adc9; --ink-faint:#786f92;
+    --line:#2e2842; --line-strong:#453c68;
+    --violet:#a68af7; --violet-deep:#332a63; --violet-wash:#241d3f;
+    --wine:#e78d92; --wine-deep:#4a1e24;
+    --gold:#dcb35a; --good:#3fe0a0;
+    --band-hero:#1c1638; --band-dark:#0a0714; --on-band:#ffffff; --on-band-muted:#c7bdf0;
+    --on-wine-muted:#f0c7cb;
+    --shadow:0 1px 2px rgba(0,0,0,0.5), 0 24px 48px -20px rgba(0,0,0,0.7);
+  }
+
+  *{box-sizing:border-box;}
+  @media (prefers-reduced-motion: reduce){ *{animation:none!important;transition:none!important;} }
+
+  body{
+    margin:0; background:var(--paper); color:var(--ink); font-family:var(--body);
+    font-size:18.5px; line-height:1.7; -webkit-font-smoothing:antialiased;
+  }
+  .page-inner{ max-width:720px; margin:0 auto; padding:0 1.5rem; }
+  .tnum{ font-variant-numeric:tabular-nums; }
+  a{ color:var(--violet); }
+
+  .reveal{ opacity:0; transform:translateY(14px); transition:opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  /* ---------- hero band ---------- */
+  .band-hero{
+    background:var(--band-hero); color:var(--on-band); padding:4.2rem 0 4.6rem; position:relative; overflow:hidden;
+  }
+  .band-hero::before{
+    content:""; position:absolute; top:-30%; right:-10%; width:60%; height:140%;
+    background:radial-gradient(circle, color-mix(in srgb, var(--gold) 45%, transparent) 0%, transparent 70%);
+    opacity:0.3; pointer-events:none;
+  }
+  .band-hero .page-inner{ position:relative; }
+  .eyebrow{
+    font-family:var(--mono); font-size:0.76rem; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--on-band-muted); display:flex; gap:0.6em; align-items:baseline;
+  }
+  .eyebrow .dot{ color:var(--gold); }
+  h1{
+    font-family:var(--display); font-weight:600; font-size:clamp(2.3rem,6vw,3.3rem);
+    line-height:1.12; letter-spacing:-0.01em; margin:0.85rem 0 0; text-wrap:balance; color:var(--on-band);
+  }
+  .dek{ font-size:1.18rem; color:var(--on-band-muted); max-width:56ch; margin:1.2rem 0 0; }
+
+  /* ---------- floating stat card ---------- */
+  .stat-strip{
+    display:flex; flex-wrap:wrap; background:var(--paper-raised); border-radius:14px;
+    box-shadow:var(--shadow); margin:-2.6rem 0 0; position:relative; z-index:2; overflow:hidden;
+  }
+  .stat{ flex:1 1 21%; min-width:135px; padding:1.6rem 1.1rem; text-align:center; border-right:1px solid var(--line); }
+  .stat:last-child{ border-right:none; }
+  .stat-num{
+    display:block; font-family:var(--display); font-weight:600; font-size:clamp(1.65rem,3.9vw,2.15rem); color:var(--violet);
+  }
+  .stat.bad{ background:var(--wine-deep); }
+  .stat.bad .stat-num{ color:#fff; }
+  .stat.bad .stat-label{ color:var(--on-wine-muted); }
+  .stat-label{ display:block; font-size:0.84rem; color:var(--ink-muted); margin-top:0.55rem; line-height:1.4; }
+
+  .content{ padding:3.8rem 0 0; }
+  .section-num{
+    font-family:var(--mono); font-size:0.74rem; letter-spacing:0.1em; color:var(--ink-faint);
+    display:block; margin-bottom:0.7rem;
+  }
+  p{ margin:1.2rem 0; }
+
+  /* ---------- bullet lists ---------- */
+  ul.bullets{ list-style:none; margin:1.1rem 0 0; padding:0; display:flex; flex-direction:column; gap:0.75rem; }
+  ul.bullets li{ position:relative; padding-left:1.6rem; font-size:1.14rem; }
+  ul.bullets li::before{
+    content:"—"; position:absolute; left:0; top:0; font-family:var(--mono); opacity:0.75;
+  }
+
+  /* ---------- problem / fix cards (solid, high-contrast) ---------- */
+  .zone{ border-radius:14px; padding:2.1rem 2.1rem; margin-top:0.4rem; box-shadow:var(--shadow); }
+  .zone-problem{ background:var(--wine-deep); color:var(--on-band); }
+  .zone-problem .section-num{ color:var(--on-wine-muted); }
+  .zone-problem p{ font-size:1.14rem; color:var(--on-band); }
+  .zone-problem ul.bullets li{ color:var(--on-band); }
+  .zone-problem ul.bullets li::before{ color:var(--on-wine-muted); }
+  .reveal-tag{
+    font-family:var(--mono); font-size:0.74rem; letter-spacing:0.08em; text-transform:uppercase;
+    color:#fff; background:rgba(255,255,255,0.12);
+    border:1px solid rgba(255,255,255,0.32);
+    display:inline-block; padding:0.42rem 0.85rem; border-radius:999px; margin:0.9rem 0 0.3rem;
+  }
+
+  .zone-solution{ background:var(--violet-deep); color:var(--on-band); margin-top:2.3rem; }
+  .zone-solution .section-num{ color:var(--on-band-muted); }
+  .solution-grid{ display:grid; grid-template-columns:1fr 1fr; gap:2.1rem; margin-top:0.4rem; }
+  @media (max-width:600px){ .solution-grid{ grid-template-columns:1fr; gap:1.6rem; } }
+  .sol-label{
+    font-family:var(--mono); font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--on-band-muted); display:block; margin-bottom:0.65rem; font-weight:600;
+  }
+  .sol-col ul.bullets{ margin-top:0.2rem; }
+  .sol-col ul.bullets li{ font-size:1.1rem; color:var(--on-band); }
+  .sol-col ul.bullets li::before{ color:var(--on-band-muted); }
+  .sol-col a{ font-weight:600; color:#fff; text-decoration:none; border-bottom:1px solid rgba(255,255,255,0.55); }
+  .sol-col a:hover{ border-bottom-color:#fff; }
+  .sol-cta{ margin-top:1rem; font-size:1.05rem; }
+
+  /* ---------- workflow (interactive) ---------- */
+  .zone-workflow{ margin-top:2.6rem; }
+  .workflow-intro{ font-size:1.08rem; color:var(--ink-muted); max-width:62ch; }
+  .flow{ display:flex; flex-direction:column; margin-top:1.7rem; }
+  .flow-node{
+    all:unset; box-sizing:border-box; cursor:pointer; display:flex; align-items:center; gap:1rem;
+    background:var(--paper-raised); border:1px solid var(--line-strong); border-radius:12px;
+    padding:1.15rem 1.3rem; box-shadow:var(--shadow); position:relative; z-index:1; width:100%;
+  }
+  .flow-node:hover{ border-color:var(--violet); }
+  .flow-node:focus-visible{ outline:2px solid var(--violet); outline-offset:2px; }
+  .flow-index{
+    font-family:var(--mono); font-size:0.86rem; font-weight:600; width:2.15rem; height:2.15rem; border-radius:50%;
+    background:var(--violet); color:#fff; display:flex; align-items:center; justify-content:center; flex:none;
+  }
+  .flow-node[aria-expanded="true"] .flow-index{ background:var(--gold); }
+  .flow-title{ font-family:var(--display); font-weight:600; font-size:1.18rem; color:var(--ink); }
+  .flow-role{ display:block; font-size:0.82rem; color:var(--ink-faint); margin-top:0.15rem; font-family:var(--mono); }
+  .flow-sub{ margin-left:auto; font-size:0.92rem; color:var(--ink-muted); text-align:right; max-width:15ch; }
+  .flow-chevron{
+    flex:none; width:1.1rem; height:1.1rem; color:var(--ink-faint); transition:transform 0.3s ease;
+  }
+  .flow-node[aria-expanded="true"] .flow-chevron{ transform:rotate(180deg); color:var(--violet); }
+
+  .flow-connector{ width:2px; background:var(--line-strong); height:2.1rem; margin-left:2.375rem; position:relative; overflow:hidden; }
+  .flow-pulse{
+    position:absolute; left:50%; top:-14%; width:8px; height:8px; margin-left:-4px; border-radius:50%;
+    background:var(--violet); box-shadow:0 0 8px 1px color-mix(in srgb, var(--violet) 60%, transparent);
+    animation:flowPulse 2.6s linear infinite;
+  }
+  .flow-connector:nth-of-type(1) .flow-pulse{ animation-delay:0s; }
+  @keyframes flowPulse{
+    0%{ top:-14%; opacity:0; } 12%{ opacity:1; } 88%{ opacity:1; } 100%{ top:112%; opacity:0; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .flow-pulse{ animation:none; opacity:0.65; top:50%; }
+  }
+
+  .flow-detail{
+    overflow:hidden; max-height:0; transition:max-height 0.42s cubic-bezier(.4,0,.2,1), opacity 0.3s ease;
+    background:var(--paper); border:1px solid var(--line); border-top:none; border-radius:0 0 12px 12px;
+    margin:-8px 0 0; opacity:0;
+  }
+  .flow-detail.open{ max-height:320px; opacity:1; padding:1rem 1.3rem 1.2rem; }
+  .flow-detail ul.bullets{ margin-top:0; gap:0.5rem; }
+  .flow-detail ul.bullets li{ font-size:0.98rem; color:var(--ink-muted); }
+  .flow-detail ul.bullets li::before{ color:var(--violet); }
+  .flow-hint{ margin-top:1.1rem; font-size:0.86rem; color:var(--ink-faint); font-family:var(--mono); text-align:center; }
+
+  /* ---------- pull quote band ---------- */
+  .band-quote{ background:var(--band-dark); color:var(--on-band); padding:3.6rem 0; margin-top:3.6rem; }
+  .pull-quote{
+    font-family:var(--display); font-style:italic; font-size:clamp(1.5rem,3.6vw,1.95rem);
+    line-height:1.5; color:var(--on-band); text-wrap:balance; text-align:center; margin:0;
+    position:relative;
+  }
+  .pull-quote .mark{ color:var(--gold); font-style:normal; }
+
+  /* ---------- bridge ---------- */
+  .bridge{
+    font-size:1.05rem; color:var(--ink-muted); background:var(--paper-raised);
+    border:1px solid var(--line); border-left:4px solid var(--violet); border-radius:10px;
+    padding:1.4rem 1.6rem; margin:3rem 0 0;
+  }
+  .bridge b{ color:var(--ink); }
+
+  /* ---------- cta band ---------- */
+  .band-cta{ background:var(--band-dark); color:var(--on-band); padding:3.8rem 0 4.2rem; margin-top:3.8rem; text-align:center; }
+  .band-cta h2{
+    font-family:var(--display); font-weight:600; font-size:clamp(1.5rem,3.6vw,1.9rem);
+    margin:0; text-wrap:balance; color:var(--on-band);
+  }
+  .band-cta .cta-sub{ color:var(--on-band-muted); font-size:1rem; margin:0.65rem 0 0; }
+  .cta-btn{
+    display:inline-block; margin-top:1.6rem; background:var(--gold); color:#1a1206; text-decoration:none;
+    font-weight:700; font-size:1.05rem; padding:1rem 2rem; border-radius:8px; box-shadow:var(--shadow);
+  }
+
+  footer.credit{
+    padding:2.3rem 1.5rem 3.6rem; text-align:center; font-size:0.8rem; color:var(--ink-faint);
+    max-width:52ch; margin:0 auto;
+  }
+</style>
+</head>
+<body>
+<section class="band-hero">
+  <div class="page-inner">
+    <div class="eyebrow">Beacon <span class="dot">&middot;</span> Case Study</div>
+    <h1>What $356K a unit with no attribution looks like</h1>
+    <p class="dek">A real, disclosed record of what happens when ad-fund money pools without a shared ledger &mdash; and the structural fix that prevents it, not a better audit.</p>
+  </div>
+</section>
+
+<div class="page-inner">
+  <div class="stat-strip reveal" id="stat-strip">
+    <div class="stat">
+      <span class="stat-num tnum" data-target="5" data-suffix="+">0</span>
+      <span class="stat-label">Federal actions disclosed</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num tnum" data-target="17" data-suffix="+">0</span>
+      <span class="stat-label">AAA arbitrations disclosed</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num tnum" data-prefix="$" data-target="356" data-suffix="K">$0</span>
+      <span class="stat-label">Avg. annual ad spend, per unit</span>
+    </div>
+    <div class="stat bad">
+      <span class="stat-num tnum" data-prefix="$" data-target="0">$0</span>
+      <span class="stat-label">Of it attributable to a specific unit's results</span>
+    </div>
+  </div>
+
+  <div class="content">
+    <section class="zone zone-problem reveal">
+      <span class="section-num">01 &middot; The problem</span>
+      <p>A national home-services franchisor pools every unit's ad-fund contribution into one shared budget. National campaigns go out. Leads come in. But nothing in between connects a specific unit's dollars to that unit's results:</p>
+      <ul class="bullets">
+        <li>Every unit's contribution lands in one pooled national budget, no per-unit tag attached.</li>
+        <li>Campaigns launch and leads arrive, but the link back to whose dollars paid for which lead never gets recorded.</li>
+        <li>When a franchisee asks what their share actually bought, the honest answer is nobody can say.</li>
+      </ul>
+      <span class="reveal-tag">This isn't hypothetical</span>
+      <p>Re-Bath's most recently disclosed FDD lists 5+ federal actions and 17+ AAA arbitrations tied to its marketing fund, against roughly $356,000 in average annual ad spend per unit &mdash; and none of it comes with a ledger either side can point to.</p>
+    </section>
+
+    <section class="zone zone-solution reveal">
+      <span class="section-num">02 &middot; The fix</span>
+      <div class="solution-grid">
+        <div class="sol-col">
+          <span class="sol-label">Solution</span>
+          <ul class="bullets">
+            <li>A shared, real-time fund ledger both HQ and franchisees read from &mdash; not two separate spreadsheets.</li>
+            <li>A campaign launcher that allocates every approved dollar by unit or region before it's spent, not after.</li>
+            <li>A content engine that turns each campaign into localized assets, pushed straight to the units that funded it.</li>
+          </ul>
+        </div>
+        <div class="sol-col">
+          <span class="sol-label">Outcome</span>
+          <ul class="bullets">
+            <li>Every unit sees exactly what was spent on its behalf, the moment it's approved.</li>
+            <li>Inside the same ledger HQ already uses &mdash; not a parallel audit trail.</li>
+            <li>Not a better audit. A ledger where the question never comes up.</li>
+          </ul>
+          <p class="sol-cta"><a href="https://two-home-one-ledge-marketing.vercel.app/" target="_blank" rel="noopener">See it live &rarr;</a></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="zone-workflow reveal">
+      <span class="section-num">03 &middot; How Beacon works</span>
+      <p class="workflow-intro">Four stages, one shared ledger running underneath all of them. Tap a stage to see what happens inside it.</p>
+
+      <div class="flow" id="flow">
+        <button class="flow-node" data-stage="fund" aria-expanded="false" aria-controls="detail-fund">
+          <span class="flow-index">1</span>
+          <span>
+            <span class="flow-title">Fund Overview</span>
+            <span class="flow-role">HQ view</span>
+          </span>
+          <span class="flow-sub">Where the money is</span>
+          <svg class="flow-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="flow-detail" id="detail-fund" role="region" aria-hidden="true">
+          <ul class="bullets">
+            <li>Pool balances across every unit's contribution, live.</li>
+            <li>Vendor rebates and franchisee contributions reconciled in one place.</li>
+            <li>An audit log HQ and franchisees both read &mdash; not just HQ.</li>
+          </ul>
+        </div>
+
+        <div class="flow-connector"><span class="flow-pulse"></span></div>
+
+        <button class="flow-node" data-stage="launcher" aria-expanded="false" aria-controls="detail-launcher">
+          <span class="flow-index">2</span>
+          <span>
+            <span class="flow-title">Campaign Launcher</span>
+            <span class="flow-role">HQ builds, approver signs off</span>
+          </span>
+          <span class="flow-sub">Where it gets allocated</span>
+          <svg class="flow-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="flow-detail" id="detail-launcher" role="region" aria-hidden="true">
+          <ul class="bullets">
+            <li>A five-step wizard: type &rarr; channels &rarr; targeting &rarr; budget &rarr; review.</li>
+            <li>Every dollar is tagged to a unit or region before approval, not after spend.</li>
+            <li>Lifecycle is tracked end to end: drafted &rarr; approved &rarr; pushed.</li>
+          </ul>
+        </div>
+
+        <div class="flow-connector"><span class="flow-pulse"></span></div>
+
+        <button class="flow-node" data-stage="content" aria-expanded="false" aria-controls="detail-content">
+          <span class="flow-index">3</span>
+          <span>
+            <span class="flow-title">Content Studio</span>
+            <span class="flow-role">Turns budget into assets</span>
+          </span>
+          <span class="flow-sub">Where it becomes creative</span>
+          <svg class="flow-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="flow-detail" id="detail-content" role="region" aria-hidden="true">
+          <ul class="bullets">
+            <li>Research phase grounds the creative in the unit's actual market.</li>
+            <li>Generation phase includes a Meta Compliance Score before anything ships.</li>
+            <li>Push phase sends the finished asset straight to the units that funded it.</li>
+          </ul>
+        </div>
+
+        <div class="flow-connector"><span class="flow-pulse"></span></div>
+
+        <button class="flow-node" data-stage="franchisee" aria-expanded="false" aria-controls="detail-franchisee">
+          <span class="flow-index">4</span>
+          <span>
+            <span class="flow-title">Franchisee View</span>
+            <span class="flow-role">Franchisee sees the receipt</span>
+          </span>
+          <span class="flow-sub">Where the loop closes</span>
+          <svg class="flow-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="flow-detail" id="detail-franchisee" role="region" aria-hidden="true">
+          <ul class="bullets">
+            <li>Fund Ledger: contribution rate, amount owed, amount paid, status &mdash; same numbers HQ sees.</li>
+            <li>Content Library: every asset pushed from HQ, already tied to this unit's spend.</li>
+            <li>No separate request, no waiting on a report &mdash; it's just there.</li>
+          </ul>
+        </div>
+      </div>
+      <p class="flow-hint">This is the same four-stage loop every campaign runs through &mdash; nothing here is a mockup of a future feature.</p>
+    </section>
+  </div>
+</div>
+
+<section class="band-quote reveal" id="quote-band">
+  <div class="page-inner">
+    <p class="pull-quote"><span class="mark">&ldquo;</span>Most ad-fund litigation isn't about the money. It's about the absence of a shared source of truth.<span class="mark">&rdquo;</span></p>
+  </div>
+</section>
+
+<div class="page-inner">
+  <div class="content" style="padding-top:0;">
+    <span class="section-num" style="margin-top:2.6rem; display:block;">04 &middot; The pattern</span>
+    <p class="bridge reveal">The pattern isn't specific to Re-Bath. It's structural &mdash; it shows up anywhere ad-fund money pools without a ledger both sides can read. <b>The only question worth asking is whether yours already has one.</b></p>
+  </div>
+</div>
+
+<section class="band-cta reveal" id="cta-band">
+  <div class="page-inner">
+    <span class="section-num" style="color:var(--on-band-muted);">05 &middot; Next step</span>
+    <h2>Talk to us before this is your Item 3.</h2>
+    <p class="cta-sub">Fifteen minutes. Your fund, your numbers.</p>
+    <a class="cta-btn" href="mailto:ansh@weam.ai?subject=Beacon%20walkthrough&body=Hi%2C%20I%27d%20like%20to%20talk%20through%20our%20fund%27s%20attribution%20setup.">Book the walkthrough</a>
+  </div>
+</section>
+
+<footer class="credit">Litigation and arbitration figures per Re-Bath's most recently disclosed Franchise Disclosure Document, Item 3. Cited as an industry pattern, not a claim about any other company.</footer>
+
+<script>
+(function(){
+  "use strict";
+  var REDUCE = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function countUp(el){
+    var target = parseFloat(el.dataset.target);
+    var prefix = el.dataset.prefix || '';
+    var suffix = el.dataset.suffix || '';
+    if (REDUCE || !target) { el.textContent = prefix + target + suffix; return; }
+    var duration = 900;
+    var startTime = null;
+    function tick(ts){
+      if (!startTime) startTime = ts;
+      var progress = Math.min((ts - startTime) / duration, 1);
+      var eased = 1 - Math.pow(1 - progress, 3);
+      var val = Math.round(target * eased);
+      el.textContent = prefix + val + suffix;
+      if (progress < 1) requestAnimationFrame(tick);
+      else el.textContent = prefix + target + suffix;
+    }
+    requestAnimationFrame(tick);
+  }
+
+  var revealEls = document.querySelectorAll('.reveal');
+  if (REDUCE || !('IntersectionObserver' in window)) {
+    revealEls.forEach(function(el){ el.classList.add('in'); });
+    document.querySelectorAll('.stat-num').forEach(countUp);
+  } else {
+    var statsCounted = false;
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('in');
+        if (entry.target.id === 'stat-strip' && !statsCounted) {
+          statsCounted = true;
+          document.querySelectorAll('.stat-num').forEach(countUp);
+        }
+        io.unobserve(entry.target);
+      });
+    }, { threshold: 0.3 });
+    revealEls.forEach(function(el){ io.observe(el); });
+  }
+
+  // ---------- interactive workflow ----------
+  var nodes = document.querySelectorAll('.flow-node');
+  function closeNode(btn){
+    var detail = document.getElementById(btn.getAttribute('aria-controls'));
+    btn.setAttribute('aria-expanded', 'false');
+    detail.classList.remove('open');
+    detail.setAttribute('aria-hidden', 'true');
+  }
+  function openNode(btn){
+    var detail = document.getElementById(btn.getAttribute('aria-controls'));
+    btn.setAttribute('aria-expanded', 'true');
+    detail.classList.add('open');
+    detail.setAttribute('aria-hidden', 'false');
+  }
+  nodes.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var isOpen = btn.getAttribute('aria-expanded') === 'true';
+      if (isOpen) { closeNode(btn); return; }
+      nodes.forEach(function(other){ if (other !== btn) closeNode(other); });
+      openNode(btn);
+    });
+  });
+  if (nodes.length) openNode(nodes[0]);
+})();
+</script>
+
+</body></html>
